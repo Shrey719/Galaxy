@@ -4,11 +4,16 @@
 }
 
 body {
-  background-color: #151515;
+  background: linear-gradient(180deg, #0d0d0d, #151515);
   color: white;
   height: 100vh;
   width: 100vw;
-  font-family: 'IBM Plex Sans';
+  font-family: 'IBM Plex Sans', sans-serif;
+  background-image: url('https://www.example.com/galaxy-background.jpg'); /* Replace with an actual galaxy image URL */
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  overflow: hidden;
 }
 
 .container {
@@ -16,14 +21,15 @@ body {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-
   text-align: center;
-
   display: flex;
   flex-direction: column;
   align-items: center;
-
   gap: 18px;
+  backdrop-filter: blur(10px);
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  border-radius: 20px;
 }
 
 .header {
@@ -31,6 +37,7 @@ body {
   display: flex;
   align-items: center;
   gap: 12px;
+  color: #e0e0e0;
 }
 
 .icon {
@@ -44,18 +51,16 @@ body {
 }
 
 .input {
-  width: 400%;
+  width: 400px;
   background-color: transparent;
-  border: 1.5px rgb(74, 74, 74) solid;
+  border: 1.5px solid rgb(74, 74, 74);
   font-size: 14px;
   padding: 12px;
   text-align: center;
   color: white;
   outline: none;
   border-radius: 50px; 
-  transition: color;
-  transition-duration: 100ms;
-
+  transition: color 100ms;
 }
 
 .input:disabled {
@@ -65,7 +70,6 @@ body {
 .logo {
   height: 55px;
   width: 55px;
-  /* padding: 1.5em; */
   will-change: filter;
   transition: filter 300ms;
 }
@@ -82,9 +86,7 @@ body {
   justify-content: space-between;
   align-items: center;
   box-sizing: border-box;
-
   flex-shrink: 0;
-
   padding: 18px;
   padding-left: 24px;
   padding-right: 30px;
@@ -110,10 +112,11 @@ body {
 
 .navbar {
   overflow: hidden;
-  background-color: #000000;
+  background-color: rgba(0, 0, 0, 0.7);
   position: fixed; 
   top: 0; 
   width: 100%; 
+  backdrop-filter: blur(5px);
 }
 
 .navbar a {
@@ -124,14 +127,14 @@ body {
   padding: 14px 16px;
   text-decoration: none;
 }
-/* Links and things because css is f  u   n   */
+
 .navbar a:hover {
   background: #ddd;
   color: black;
 }
 
 .button {
-  background-color: #000000;
+  background-color: rgba(0, 0, 0, 0.7);
   border: none;
   color: rgb(255, 255, 255);
   padding: 15px 32px;
@@ -141,6 +144,7 @@ body {
   margin: 4px 2px;
   cursor: pointer;
   border-radius: 200px;
+  transition: background-color 300ms, color 300ms;
 }
 
 .button:hover {
