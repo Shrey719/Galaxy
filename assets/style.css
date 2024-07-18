@@ -4,12 +4,12 @@
 }
 
 body {
-  background: linear-gradient(180deg, #0d0d0d, #151515);
-  color: white;
+  background-color: #2e2e2e;
+  color: #8C52FF;
   height: 100vh;
   width: 100vw;
   font-family: 'IBM Plex Sans', sans-serif;
-  background-image: url('https://www.example.com/galaxy-background.jpg'); /* Replace with an actual galaxy image URL */
+  background-image: url('https://media.discordapp.net/attachments/1263146172617588849/1263502359657713775/download_1_1.jpeg?ex=669a77c5&is=66992645&hm=d49e683e7b5f6e4693a8b35e4c9116eb9e523c8fe9bd1d6459ec6bcf15f8468a&=&format=webp&width=717&height=447');
   background-size: cover;
   background-attachment: fixed;
   background-repeat: no-repeat;
@@ -37,7 +37,7 @@ body {
   display: flex;
   align-items: center;
   gap: 12px;
-  color: #e0e0e0;
+  color: #8C52FF;
 }
 
 .icon {
@@ -47,7 +47,7 @@ body {
 
 .description {
   font-size: 16px;
-  color: #afafaf;
+  color: #8C52FF;
 }
 
 .input {
@@ -57,10 +57,14 @@ body {
   font-size: 14px;
   padding: 12px;
   text-align: center;
-  color: white;
+  color: #8C52FF;
   outline: none;
   border-radius: 50px; 
   transition: color 100ms;
+}
+
+.input::placeholder {
+  color: #757575;
 }
 
 .input:disabled {
@@ -90,12 +94,13 @@ body {
   padding: 18px;
   padding-left: 24px;
   padding-right: 30px;
+  color: #8C52FF;
 }
 
 .footer a,
 .footer a:visited {
   cursor: pointer;
-  color: white;
+  color: #8C52FF;
   font-size: 16px;
   text-decoration: none;
   text-underline-offset: 2.5px;
@@ -117,12 +122,13 @@ body {
   top: 0; 
   width: 100%; 
   backdrop-filter: blur(5px);
+  color: #8C52FF;
 }
 
 .navbar a {
   float: left;
   display: block;
-  color: #f2f2f2;
+  color: #8C52FF;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
@@ -136,7 +142,7 @@ body {
 .button {
   background-color: rgba(0, 0, 0, 0.7);
   border: none;
-  color: rgb(255, 255, 255);
+  color: #8C52FF;
   padding: 15px 32px;
   text-align: center;
   text-decoration: none;
@@ -150,4 +156,9 @@ body {
 .button:hover {
   background-color: #ffffff;
   color: black;
+}
+
+.input::placeholder {
+  content: 'Made By Galaxy hub (LMIO, Theskid22)';
+  color: #757575;
 }
