@@ -1,0 +1,22 @@
+{
+  "name": "galaxy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/theskid22/Galaxy.git"
+  },
+  "author": "Galaxy Hub",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/theskid22/Galaxy/issues"
+  },
+  "homepage": "https://github.com/theskid22/Galaxy#readme",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
