@@ -6,7 +6,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="shortcut icon" href="./assets/ultraviolet.png" type="image/png">
-  <title>Galaxy</title>
+  <title>Settings</title>
 
   <!-- Styles and fonts -->
   <link rel="stylesheet" href="./assets/style.css">
@@ -20,7 +20,7 @@
   <script src="./uv/uv.bundle.js"></script>
   <script src="./uv/uv.config.js"></script>
   <script src="./assets/register-sw.js"></script>
-  <script src='./assets/exploitscripts.js'></script>
+  <script src="./assets/exploitscripts.js"></script>
 
   <style>
     body {
@@ -32,67 +32,77 @@
       background-repeat: no-repeat;
       background-attachment: fixed;
       color: white;
+      text-align: center;
     }
+
     .navbar {
       display: flex;
-      justify-content: space-around;
+      justify-content: center;
       background-color: rgba(0, 0, 0, 0.7);
-      padding: 10px 0;
+      padding: 10px;
     }
-    .button {
+
+    .navbar .button {
       color: white;
       text-decoration: none;
       padding: 10px 20px;
-      border-radius: 4px;
-      transition: background-color 0.3s;
-    }
-    .button:hover {
-      background-color: #007BFF;
-    }
-    .container {
-      text-align: center;
-      margin-top: 50px;
-    }
-    .header {
-      font-size: 2rem;
-    }
-    .description {
-      font-size: 1rem;
-      margin-top: 10px;
-    }
-    .input {
-      width: 80%;
-      padding: 10px;
-      margin-top: 20px;
+      margin: 0 10px;
+      background-color: #555;
       border-radius: 5px;
-      border: 1px solid #ccc;
     }
+
+    .navbar .button:hover {
+      background-color: #333;
+    }
+
+    .container {
+      padding: 0;
+    }
+
+    .header {
+      margin: 20px 0;
+      font-size: 2em;
+      font-weight: bold;
+    }
+
     .settings-container {
       max-width: 600px;
-      margin: auto;
+      margin: 50px auto;
       padding: 20px;
       background-color: rgba(0, 0, 0, 0.7);
       border-radius: 10px;
-      margin-top: 50px;
     }
-    .settings-container h1 {
-      text-align: center;
+
+    .settings-box {
+      margin-bottom: 30px;
+      padding: 20px;
+      background-color: rgba(0, 0, 0, 0.8);
+      border-radius: 10px;
     }
+
+    .settings-box h2 {
+      margin-top: 0;
+      font-size: 1.5em;
+    }
+
     .setting-item {
       margin: 20px 0;
     }
-    label {
+
+    .setting-item label {
       display: block;
       margin-bottom: 5px;
     }
-    input[type="text"] {
+
+    .setting-item input[type="text"] {
       width: 100%;
       padding: 8px;
       margin-bottom: 10px;
       border: 1px solid #ccc;
       border-radius: 4px;
     }
-    button {
+
+    .setting-item button {
       width: 100%;
       padding: 10px 20px;
       background-color: #007BFF;
@@ -101,12 +111,14 @@
       border-radius: 4px;
       cursor: pointer;
     }
-    button:hover {
+
+    .setting-item button:hover {
       background-color: #0056b3;
     }
+
     .footer {
-      text-align: center;
       padding: 20px;
+      background-color: rgba(0, 0, 0, 0.7);
     }
   </style>
 </head>
@@ -117,42 +129,44 @@
     <a href="/apps.html" class="button">Apps</a>
     <a href="/settings.html" class="button">Settings</a>
   </div>
-
+  
   <div class="container">
-    <h1 class="header">Galaxy</h1>
-    <p class="description">Made By Cosmo (LMIO and Theskid22)</p>
-    <input type="text" class="input" placeholder="Enter a search query or URL">
-  </div>
+    <h1 class="header">Settings</h1>
 
-  <div class="settings-container">
-    <h1>Tab Cloak Settings</h1>
-    <div class="setting-item">
-      <label for="tabTitle">Tab Title:</label>
-      <input type="text" id="tabTitle" placeholder="Enter the tab title">
-    </div>
-    <div class="setting-item">
-      <label for="faviconUrl">Favicon URL:</label>
-      <input type="text" id="faviconUrl" placeholder="Enter the favicon URL">
-    </div>
-    <button onclick="cloakTab()">Cloak Tab</button>
-  </div>
+    <div class="settings-container">
+      <!-- Tab Cloak Settings Box -->
+      <div class="settings-box">
+        <h2>Tab Cloak Settings</h2>
+        <div class="setting-item">
+          <label for="tabTitle">Tab Title:</label>
+          <input type="text" id="tabTitle" placeholder="Enter the tab title">
+        </div>
+        <div class="setting-item">
+          <label for="faviconUrl">Favicon URL:</label>
+          <input type="text" id="faviconUrl" placeholder="Enter the favicon URL">
+        </div>
+        <button onclick="cloakTab()">Cloak Tab</button>
+      </div>
 
-  <div class="settings-container">
-    <h1>Panic Key Settings</h1>
-    <div class="setting-item">
-      <label for="panicKey">Panic Key:</label>
-      <input type="text" id="panicKey" placeholder="Enter a key (e.g., 'P')">
+      <!-- Panic Key Settings Box -->
+      <div class="settings-box">
+        <h2>Panic Key Settings</h2>
+        <div class="setting-item">
+          <label for="panicKey">Panic Key:</label>
+          <input type="text" id="panicKey" placeholder="Enter the panic key">
+        </div>
+        <div class="setting-item">
+          <label for="panicUrl">Panic URL:</label>
+          <input type="text" id="panicUrl" placeholder="Enter the URL to redirect to">
+        </div>
+        <button onclick="setPanicKey()">Set Panic Key</button>
+      </div>
     </div>
-    <div class="setting-item">
-      <label for="redirectUrl">Redirect URL:</label>
-      <input type="text" id="redirectUrl" placeholder="Enter the redirect URL">
-    </div>
-    <button onclick="setPanicKey()">Set Panic Key</button>
   </div>
 
   <div class="footer">
     <footer>
-      <!-- Footer content -->
+      <!-- Footer content here -->
     </footer>
   </div>
 
@@ -167,9 +181,9 @@
 
       if (faviconUrl) {
         const link = document.createElement('link');
+        const oldLink = document.querySelector("link[rel='icon']");
         link.rel = 'icon';
         link.href = faviconUrl;
-        const oldLink = document.querySelector("link[rel='icon']");
         if (oldLink) {
           document.head.removeChild(oldLink);
         }
@@ -178,12 +192,13 @@
     }
 
     function setPanicKey() {
-      const panicKey = document.getElementById('panicKey').value.toUpperCase();
-      const redirectUrl = document.getElementById('redirectUrl').value;
-      if (panicKey && redirectUrl) {
-        document.addEventListener('keydown', function (event) {
-          if (event.key.toUpperCase() === panicKey) {
-            window.location.href = redirectUrl;
+      const panicKey = document.getElementById('panicKey').value.toLowerCase();
+      const panicUrl = document.getElementById('panicUrl').value;
+
+      if (panicKey && panicUrl) {
+        document.addEventListener('keydown', function(event) {
+          if (event.key.toLowerCase() === panicKey) {
+            window.location.href = panicUrl;
           }
         });
       }
