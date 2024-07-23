@@ -1,43 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
-        <div class="navbar">
-        <a href="/index.html" class="button">Home</a>
-        <a href="/games.html" class="button">Games</a>
-        <a href="/apps.html" class="button">Apps</a>
-        <a href="/settings.html" class="button">Settings</a>
-     </div>
 <head>
-      <link rel="shortcut icon" href="https://i.im.ge/2024/07/22/VWh1fL.USE-FOR-FONT-COLOR-4-MConverter-eu.jpeg/favicon.ico" type="image/x-icon">
-      <link rel="icon" href="https://i.im.ge/2024/07/22/VWh1fL.USE-FOR-FONT-COLOR-4-MConverter-eu.jpeg" type="image/x-icon">
+    <link rel="shortcut icon" href="https://i.im.ge/2024/07/22/VWh1fL.USE-FOR-FONT-COLOR-4-MConverter-eu.jpeg/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="https://i.im.ge/2024/07/22/VWh1fL.USE-FOR-FONT-COLOR-4-MConverter-eu.jpeg" type="image/x-icon">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-683NM3VWNY"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-683NM3VWNY');
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link rel="shortcut icon" href="./assets/favicon.png" type="image/png">
+    <link rel="shortcut icon" href="./assets/favicon.png" type="image/png">
     <link rel="stylesheet" href="./assets/style.css">
     <script src="./uv/uv.bundle.js"></script>
     <script src="./uv/uv.config.js"></script>
     <script src="./assets/register-sw.js"></script>
-    <title>Settings</title>
-    <style>
-    <title>Settings Page</title>
+    <title>Games</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-image: url('https://i.im.ge/2024/07/22/VWh1fL.USE-FOR-FONT-COLOR-4-MConverter-eu.jpeg');
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            color: white;
+            overflow: scroll;
         }
+        .container {
+            padding: 0;
+        }
+        .flex-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .game {
+            width: 300px;
+            height: 400px;
+            border-radius: 30px;
+            background-color: #555555;
+            margin: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+        .header-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+        .game:hover {
+            transform: scale(1.05);
+        }
+        .game-image {
+            width: 100%;
+            height: auto;
+            width: 288px;
+            height: 288px;
+        }
+        .game-info {
+            padding: 10px;
+            text-align: center;
+            background-color: #555555;
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+        }
+        .game-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+        .play-button {
+            background-color: #555555;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            transition: background-color 0.3s ease-in-out;
+        }
+        .play-button:hover {
+            background-color: #454545;
+        }
+        .header-content1 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+        }
+        .header1 {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 60px;
+            text-align: center;
+            z-index: 1000;
+        }
+        .header-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background-color: white;
+        }
+        /* Added styles for settings container */
         .settings-container {
             max-width: 400px;
             margin: auto;
@@ -45,6 +118,7 @@
             background-color: rgba(0, 0, 0, 0.7);
             border-radius: 10px;
             margin-top: 100px;
+            color: white;
         }
         h1 {
             text-align: center;
@@ -78,6 +152,12 @@
     </style>
 </head>
 <body>
+    <div class="navbar">
+        <a href="/index.html" class="button">Home</a>
+        <a href="/games.html" class="button">Games</a>
+        <a href="/apps.html" class="button">Apps</a>
+        <a href="/settings.html" class="button">Settings</a>
+    </div>
     <div class="settings-container">
         <h1>Tab Cloak Settings</h1>
         
@@ -91,8 +171,20 @@
             <input type="text" id="faviconUrl" placeholder="Enter the favicon URL">
         </div>
 
+        <div class="setting-item">
+            <label for="panicKey">Panic Key:</label>
+            <input type="text" id="panicKey" placeholder="Enter a key (e.g., 'P')">
+        </div>
+
+        <div class="setting-item">
+            <label for="redirectUrl">Redirect URL:</label>
+            <input type="text" id="redirectUrl" placeholder="Enter the redirect URL">
+        </div>
+
         <button onclick="cloakTab()">Cloak Tab</button>
     </div>
+
+    <div class="flex-container" id="gamesList"></div>
 
     <script>
         function cloakTab() {
@@ -105,15 +197,132 @@
 
             if (faviconUrl) {
                 const link = document.createElement('link');
-                const oldLink = document.querySelector("link[rel='icon']");
                 link.rel = 'icon';
                 link.href = faviconUrl;
+                const oldLink = document.querySelector("link[rel='icon']");
                 if (oldLink) {
                     document.head.removeChild(oldLink);
                 }
                 document.head.appendChild(link);
             }
+
+            const panicKey = document.getElementById('panicKey').value.toUpperCase();
+            const redirectUrl = document.getElementById('redirectUrl').value;
+            if (panicKey && redirectUrl) {
+                document.addEventListener('keydown', function (event) {
+                    if (event.key.toUpperCase() === panicKey) {
+                        window.location.href = redirectUrl;
+                    }
+                });
+            }
         }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const gamesData = [
+                {
+                    "link": "/service/hvtrs8%2F-pna%7B224%3A.ao-",
+                    "imgSrc": "Games/2048/thumb.png",
+                    "title": "2048"
+                },
+                {
+                    "link": "/service/hvtrs8%2F-bcsievbcln-qtcrq.ko-",
+                    "imgSrc": "Games/basketball-stars/basketball-stars/assets/images/basketball-stars1.png",
+                    "title": "Basketball Stars"
+                },
+                {
+                    "link": "/service/hvtrs8%2F-1t1%2Clml-",
+                    "imgSrc": "Games/1v1lol/splash.png",
+                    "title": "1v1.lol"
+                },
+                {
+                    "link": "/service/hvtrs8%2F-ecgnepcpadt%2Ccmm-ma%2F3.%3A.%3A%2F",
+                    "imgSrc": "Games/minecraft-18/splash.png",
+                    "title": "Minecraft 1.8"
+                },
+                {
+                    "link": "/service/hvtrs8%2F-ecgnepcpadt%2Ccmm-ma%2F3.7.0%2F",
+                    "imgSrc": "Games/minecraft-15/splash.jpeg",
+                    "title": "Minecraft 1.5"
+                },
+                {
+                    "link": "/service/hvtrs8%2F-rgtpo%60oul%2Cmg%2F",
+                    "imgSrc": "Games/retro-bowl/img/icon.jpg",
+                    "title": "Retro Bowl"
+                },
+                {
+                    "link": "Games/n-gon/index.html",
+                    "imgSrc": "Games/n-gon/bot.png",
+                    "title": "N-Gon"
+                },
+                {
+                    "link": "/service/hvtrs8%2F-wuw%2Clgxclmfdlg.aoo%2F%60bq%2F%3Dtkd%3F32747",
+                    "imgSrc": "Games/just-one-boss/pv1Gr5.png",
+                    "title": "Just One Boss"
+                },
+                {
+                    "link": " /service/hvtrs8%2F-dkneuqxlo%60ofyaapeq.aoomue%60wmris%2Ccmm-sahmon%2Feao%2Ftez7-ildgx%2Chvmn",
+                    "imgSrc": "Games/img/vex7.png",
+                    "title": "VEX 7"
+                },
+                {
+                    "link": " /service/hvtrs8%2F-dkneuqxlo%60ofyaapeq.aoomue%60wmris%2Ccmm-sahmon%2Feao%2Frhkskbmx-ildgx%2Chvmn;",
+                    "imgSrc": "Games/img/physibox.png",
+                    "title": "Physibox"
+                },
+                {
+                    "link": " /service/hvtrs8%2F-dkneuqxlo%60ofyaapeq.aoomue%60wmris%2Ccmm-sahmon%2Feao%2Fqtkcimcn%2Fhmoi%2Fknfez.jtol';",
+                    "imgSrc": "Games/img/stickman.png",
+                    "title": "Stickman Hook"
+                },
+                {
+                    "link": " /service/hvtrs8%2F-dkneuqxlo%60ofyaapeq.aoomue%60wmris%2Ccmm-sahmon%2Feao%2Ftez5-ildgx%2Chvmn",
+                    "imgSrc": "Games/img/vex5.png",
+                    "title": "VEX 5"
+                },
+                {
+                    "link": " /service/hvtrs8%2F-dkneuqxlo%60ofyaapeq.aoomue%60wmris%2Ccmm-sahmon%2Feao%2Ffrkfv-%60oqs-ildgx%2Chvmn",
+                    "imgSrc": "Games/img/dboss.png",
+                    "title": "Driftboss"
+                },
+                {
+                    "link": "/service/hvtrs8%2F-ggooevr%7B-drge%2Ccmm-gcmg%2Feemmgtpy%2Flktg%2F",
+                    "imgSrc": "Games/img/geo-dash.jpg",
+                    "title": "Geometry Dash"
+                },
+                {
+                    "link": "/service/hvtrs8%2F-optgin.faqhlev.mre%2Faomkkealkciep%2F",
+                    "imgSrc": "Games/img/Cookie-Clicker.jpg",
+                    "title": "Cookie Clicker"
+                }
+            ];
+
+            const gamesList = document.getElementById("gamesList");
+
+            gamesData.forEach(game => {
+                const gameElement = document.createElement("div");
+                gameElement.className = "game";
+
+                const imgElement = document.createElement("img");
+                imgElement.src = game.imgSrc;
+                imgElement.alt = game.title;
+                imgElement.className = "game-image";
+
+                const titleElement = document.createElement("div");
+                titleElement.className = "game-info";
+                titleElement.innerHTML = `<h2 class="game-title">${game.title}</h2>`;
+
+                const linkElement = document.createElement("a");
+                linkElement.href = game.link;
+                linkElement.textContent = "Play";
+                linkElement.className = "play-button";
+
+                gameElement.appendChild(imgElement);
+                gameElement.appendChild(titleElement);
+                titleElement.appendChild(linkElement);
+
+                gamesList.appendChild(gameElement);
+            });
+        });
     </script>
 </body>
 </html>
