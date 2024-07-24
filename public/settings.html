@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <link rel="shortcut icon" href="https://i.im.ge/2024/07/22/VWh1fL.USE-FOR-FONT-COLOR-4-MConverter-eu.jpeg/favicon.ico" type="image/x-icon">
@@ -89,7 +89,6 @@
         <button onclick="cloakTab()">Cloak Tab</button>
     </div>
 
-    <!-- Panic Key Settings Box -->
     <div class="settings-container">
         <h1>Panic Key Settings</h1>
         <div class="setting-item">
@@ -97,7 +96,7 @@
             <input type="text" id="panicKey" placeholder="Enter the panic key">
         </div>
         <div class="setting-item">
-            <label for="panicUrl">Panic URL:</label>
+            <label for="panicUrl">Panic URL (use https:// at the beginning of your link):</label>
             <input type="text" id="panicUrl" placeholder="Enter the URL to redirect to">
         </div>
         <button onclick="setPanicKey()">Set Panic Key</button>
@@ -129,13 +128,27 @@
             const panicUrl = document.getElementById('panicUrl').value;
 
             if (panicKey && panicUrl) {
-                document.addEventListener('keydown', function(event) {
-                    if (event.key.toLowerCase() === panicKey) {
-                        window.location.href = panicUrl;
-                    }
-                });
+                localStorage.setItem('panicKey', panicKey);
+                localStorage.setItem('panicUrl', panicUrl);
+
+                document.addEventListener('keydown', panicKeyListener);
             }
         }
+
+        function panicKeyListener(event) {
+            const savedPanicKey = localStorage.getItem('panicKey');
+            const savedPanicUrl = localStorage.getItem('panicUrl');
+
+            if (event.key.toLowerCase() === savedPanicKey) {
+                window.location.href = savedPanicUrl;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.getItem('panicKey') && localStorage.getItem('panicUrl')) {
+                document.addEventListener('keydown', panicKeyListener);
+            }
+        });
     </script>
 </body>
 </html>
