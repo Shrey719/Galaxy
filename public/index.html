@@ -35,6 +35,21 @@
     <footer></footer>
   </div>
   <br><br><br>
+  <div class="container">
+    <form id="url-form">
+      <input type="text" id="url-input" placeholder="Enter URL here">
+      <button type="submit">Go</button>
+    </form>
+  </div>
+  <script>
+    document.getElementById('url-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const url = document.getElementById('url-input').value;
+      if (url) {
+        window.location.href = url;
+      }
+    });
+  </script>
   <script src="./assets/script.js" defer></script>
 </body>
 </html>
