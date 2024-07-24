@@ -19,6 +19,43 @@
   <script src="./uv/uv.config.js"></script>
   <script src="./assets/register-sw.js"></script>
   <script src="./panicKey.js" defer></script>
+  <script>
+    window.addEventListener('load', () => {
+      const newWindow = window.open('about:blank', '_blank');
+      if (newWindow) {
+        newWindow.document.write(`
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+            <link rel="shortcut icon" href="https://ssl.gstatic.com/docs/doclist/images/drive_2022q3_32dp.png" type="image/x-icon">
+            <link rel="icon" href="https://ssl.gstatic.com/docs/doclist/images/drive_2022q3_32dp.png" type="image/x-icon">
+            <title>My Drive - Google Drive</title>
+            <style>
+              html, body {
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+              }
+              iframe {
+                border: none;
+                width: 100%;
+                height: 100%;
+              }
+            </style>
+          </head>
+          <body>
+            <iframe src="${window.location.href}" frameborder="0"></iframe>
+          </body>
+          </html>
+        `);
+        window.location.replace('about:blank');
+      } else {
+        alert('Please allow pop-ups for this website for tab cloaking!');
+      }
+    });
+  </script>
 </head>
 <body>
   <div class="navbar">
@@ -36,16 +73,5 @@
     <footer></footer>
   </div>
   <br><br><br>
-  </div>
-  <script>
-    document.getElementById('url-form').addEventListener('submit', function(event) {
-      event.preventDefault();
-      const url = document.getElementById('url-input').value;
-      if (url) {
-        window.location.href = url;
-      }
-    });
-  </script>
-  <script src="./assets/script.js" defer></script>
 </body>
 </html>
