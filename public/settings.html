@@ -3,68 +3,19 @@
 <head>
     <link rel="shortcut icon" href="https://i.im.ge/2024/07/22/VWh1fL.USE-FOR-FONT-COLOR-4-MConverter-eu.jpeg/favicon.ico" type="image/x-icon">
     <link rel="icon" href="https://i.im.ge/2024/07/22/VWh1fL.USE-FOR-FONT-COLOR-4-MConverter-eu.jpeg" type="image/x-icon">
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-683NM3VWNY"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-683NM3VWNY');
-    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="./assets/favicon.png" type="image/png">
     <link rel="stylesheet" href="./assets/style.css">
     <script src="./uv/uv.bundle.js"></script>
     <script src="./uv/uv.config.js"></script>
     <script src="./assets/register-sw.js"></script>
+    <script src="./assets/panicKey.js" defer></script>
     <title>Settings</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-image: url('https://wallpapers.com/images/featured/cool-blue-galaxy-ghkvl8txdut36xgd.jpg');
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            color: white;
-        }
-        .settings-container {
-            max-width: 400px;
-            margin: auto;
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
             padding: 20px;
-            background-color: rgba(0, 0, 0, 0.7);
-            border-radius: 10px;
-            margin-top: 100px;
-        }
-        h1 {
-            text-align: center;
-        }
-        .setting-item {
-            margin: 20px 0;
-        }
-        label {
-            display: block;
-            margin-bottom: 5px;
-        }
-        input[type="text"] {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        button {
-            width: 100%;
-            padding: 10px 20px;
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #0056b3;
         }
     </style>
 </head>
@@ -75,79 +26,26 @@
         <a href="/apps.html" class="button">Apps</a>
         <a href="/settings.html" class="button">Settings</a>
     </div>
-
-    <div class="settings-container">
-        <h1>Cloak Settings</h1>
-        <div class="setting-item">
-            <label for="tabTitle">Tab Title:</label>
-            <input type="text" id="tabTitle" placeholder="Enter the tab title">
-        </div>
-        <div class="setting-item">
-            <label for="faviconUrl">Favicon URL:</label>
-            <input type="text" id="faviconUrl" placeholder="Enter the favicon URL">
-        </div>
-        <button onclick="cloakTab()">Cloak Tab</button>
-    </div>
-
-    <div class="settings-container">
+    <div class="container">
         <h1>Panic Key Settings</h1>
-        <div class="setting-item">
+        <form id="panicKeyForm">
             <label for="panicKey">Panic Key:</label>
-            <input type="text" id="panicKey" placeholder="Enter the panic key">
-        </div>
-        <div class="setting-item">
-            <label for="panicUrl">Panic URL (use https:// at the beginning of your link):</label>
-            <input type="text" id="panicUrl" placeholder="Enter the URL to redirect to">
-        </div>
-        <button onclick="setPanicKey()">Set Panic Key</button>
+            <input type="text" id="panicKey" name="panicKey" maxlength="1" required>
+            <br>
+            <label for="panicUrl">Panic URL:</label>
+            <input type="url" id="panicUrl" name="panicUrl" required>
+            <br>
+            <button type="submit">Save</button>
+        </form>
     </div>
-
     <script>
-        function cloakTab() {
-            const tabTitle = document.getElementById('tabTitle').value;
-            const faviconUrl = document.getElementById('faviconUrl').value;
-
-            if (tabTitle) {
-                document.title = tabTitle;
-            }
-
-            if (faviconUrl) {
-                const link = document.createElement('link');
-                const oldLink = document.querySelector("link[rel='icon']");
-                link.rel = 'icon';
-                link.href = faviconUrl;
-                if (oldLink) {
-                    document.head.removeChild(oldLink);
-                }
-                document.head.appendChild(link);
-            }
-        }
-
-        function setPanicKey() {
-            const panicKey = document.getElementById('panicKey').value.toLowerCase();
+        document.getElementById('panicKeyForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const panicKey = document.getElementById('panicKey').value;
             const panicUrl = document.getElementById('panicUrl').value;
-
-            if (panicKey && panicUrl) {
-                localStorage.setItem('panicKey', panicKey);
-                localStorage.setItem('panicUrl', panicUrl);
-
-                document.addEventListener('keydown', panicKeyListener);
-            }
-        }
-
-        function panicKeyListener(event) {
-            const savedPanicKey = localStorage.getItem('panicKey');
-            const savedPanicUrl = localStorage.getItem('panicUrl');
-
-            if (event.key.toLowerCase() === savedPanicKey) {
-                window.location.href = savedPanicUrl;
-            }
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            if (localStorage.getItem('panicKey') && localStorage.getItem('panicUrl')) {
-                document.addEventListener('keydown', panicKeyListener);
-            }
+            localStorage.setItem('panicKey', panicKey.toLowerCase());
+            localStorage.setItem('panicUrl', panicUrl);
+            alert('Panic key and URL have been saved!');
         });
     </script>
 </body>
