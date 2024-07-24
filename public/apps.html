@@ -21,9 +21,37 @@
   <script src="./assets/panicKey.js" defer></script>\
   <title>Apps</title>
   <style>
-    
+        body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: url('https://via.placeholder.com/800') no-repeat center center fixed; 
+        background-size: cover;
     }
-
+    .container {
+        position: relative;
+        width: 300px;
+        height: 200px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .box {
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 15px;
+        backdrop-filter: blur(10px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 24px;
+        color: #333;
+        text-align: center;
+    }
+    }
     html, body {
       margin: 0;
       padding: 0;
@@ -36,10 +64,14 @@
       width: 100%;
       height: 100%;
     }
-
   </style>
 </head>
 <body>
+  <div class="container">
+      <div class="box">
+          No apps yet!
+      </div>
+  </div>
   <div class="navbar">
     <a href="/index.html" class="button">Home</a>
     <a href="/games.html" class="button">Games</a>
