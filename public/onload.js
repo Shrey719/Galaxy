@@ -17,7 +17,7 @@ if (window.self === window.top) {
     doc.head.appendChild(link)
     doc.body.appendChild(iframe)
     location.replace(getRandomSite())
-}
+} // Oooh scawry functions at the bottom (godspeed to maintainers)
 
 
 function getRandomSite() {
@@ -32,4 +32,4 @@ function getRandomSite() {
 function randRange(min, max) {
     return Math.floor(Math.random() * (max - min) + min);
 
-}
+} 
