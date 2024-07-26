@@ -26,7 +26,7 @@ function getRandomSite() {
         "https://classroom.google.com",
         "https://docs.google.com",
     ]
-    return sites[randRange(0, sites.length())]
+    return sites[randRange(0, sites.length)]
 }
 
 function randRange(min, max) {
