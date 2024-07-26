@@ -1,3 +1,5 @@
+// If statement and function hell Godspeed
+
 if (window.self === window.top) {
     const popup = open("about:blank", "_blank")
     const doc = popup.document
