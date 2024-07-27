@@ -10,7 +10,7 @@
   <script src="./uv/uv.bundle.js"></script>
   <script src="./uv/uv.config.js"></script>
   <script src="./assets/register-sw.js"></script>
-  <script src="./assets/panicKey.js" defer></script>
+  <script src="/assets/settings.js" defer></script>
   <title>Settings</title>
   <style>
     body {
@@ -92,6 +92,7 @@
 	  <div class="input-group">
 		<label for="title">Set Title</label>
 		<input type="text" id="title" name="setTitle">
+		<button id="saveCloakSettingsButton">Save</button>
 	  </div>
   </div>
   <script>
@@ -104,18 +105,25 @@
 
       alert('Settings saved!');
     });
+	  document.getElementById("saveCloakSettingsButton").addEventListener("click", function () {
+		const titleN = document.getElementById('title').value
+		localStorage.setItem('cloakTitle', titleN)
+     });
 
     // Load saved settings
     document.addEventListener('DOMContentLoaded', function () {
       const savedPanicKey = localStorage.getItem('panicKey');
       const savedPanicUrl = localStorage.getItem('panicUrl');
-
+      const savedCloakTitle = localStorage.getItem("cloakTitle")
       if (savedPanicKey) {
         document.getElementById('panicKey').value = savedPanicKey;
       }
       if (savedPanicUrl) {
         document.getElementById('panicUrl').value = savedPanicUrl;
       }
+	if (savedCloakTitle) {
+		  document.getElementById("title").value = savedCloakTitle
+		  }
     });
   </script>
 </body>
