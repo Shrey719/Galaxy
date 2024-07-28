@@ -106,9 +106,9 @@
       alert('Settings saved!');
     });
 	  document.getElementById("saveCloakSettingsButton").addEventListener("click", function () {
-		const titleN = document.getElementById('title').value
-		localStorage.setItem('cloakTitle', titleN)
-     });
+     			   localStorage.setItem("cloakTitle", document.getElementById('title').value)
+			window.top.document.title = localStorage.getItem("cloakTitle")
+		    });
 
     // Load saved settings
     document.addEventListener('DOMContentLoaded', function () {

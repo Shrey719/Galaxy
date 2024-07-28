@@ -1,5 +1,4 @@
 // If statement and function hell Godspeed
-
 if (window.self === window.top) {
     const popup = open("about:blank", "_blank")
     const doc = popup.document
@@ -21,6 +20,7 @@ if (window.self === window.top) {
     location.replace(getRandomSite())
 } // Oooh scawry functions at the bottom (godspeed to maintainers)
 
+window.document.title = localStorage.getItem("cloakTitle")
 
 function getRandomSite() {
     let sites = [

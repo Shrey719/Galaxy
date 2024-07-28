@@ -15,9 +15,8 @@ function panicKeyListener(event) {
 document.addEventListener('DOMContentLoaded', () => {
     const savedPanicKey = localStorage.getItem('panicKey');
     const savedPanicUrl = localStorage.getItem('panicUrl');
-
     console.log('DOM loaded. Panic Key:', savedPanicKey, 'Panic URL:', savedPanicUrl);
-
+    window.document.title = localStorage.getItem("cloakTitle")
     if (savedPanicKey && savedPanicUrl) {
         document.addEventListener('keydown', panicKeyListener);
         console.log('Panic key listener added.');
