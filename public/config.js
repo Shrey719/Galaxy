@@ -5,4 +5,3 @@ let config = {
     winLock: false, // If os is windows, stop working 
     winCloak: false // If os is windows, cloak
 }
- 
