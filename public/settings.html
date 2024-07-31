@@ -11,7 +11,6 @@
   <script src="./uv/uv.config.js"></script>
   <script src="./assets/register-sw.js"></script>
   <script src="/assets/settings.js" defer></script>
-  <script src="./assets/onload.js"></script>
   <title>Settings</title>
   <style>
     body {
@@ -22,7 +21,7 @@
       align-items: center;
       height: 100vh;
       margin: 0;
-      flex-direction: column; /* Align items vertically */
+      flex-direction: column;
     }
     .settings-container {
       background-color: rgb(0, 0, 0);
@@ -31,7 +30,7 @@
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       max-width: 400px;
       width: 101%;
-      margin-bottom: 20px; /* Create space between boxes */
+      margin-bottom: 20px;
     }
     h1 {
       font-size: 24px;
@@ -56,8 +55,12 @@
       background-color: black;
       color: white;
     }
+    .button-group {
+      display: flex;
+      justify-content: space-around;
+    }
     button {
-      width: 100%;
+      width: 48%;
       padding: 10px;
       background-color: #4CAF50;
       color: white;
@@ -67,8 +70,62 @@
       cursor: pointer;
       margin-top: 10px;
     }
+    button.reset {
+      background-color: #f44336;
+    }
     button:hover {
       background-color: #45a049;
+    }
+    button.reset:hover {
+      background-color: #e53935;
+    }
+    .toggle-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 15px;
+    }
+    .toggle-container label {
+      font-size: 14px;
+    }
+    .toggle-switch {
+      position: relative;
+      display: inline-block;
+      width: 40px;
+      height: 20px;
+    }
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: .4s;
+      border-radius: 34px;
+    }
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 12px;
+      width: 12px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+    }
+    input:checked + .slider {
+      background-color: #4CAF50;
+    }
+    input:checked + .slider:before {
+      transform: translateX(20px);
     }
   </style>
 </head>
@@ -90,43 +147,60 @@
       <label for="panicUrl">Panic URL</label>
       <input type="text" id="panicUrl" name="panicUrl" placeholder="Enter URL">
     </div>
-    <button id="saveSettingsButton">Save</button>
+    <div class="button-group">
+      <button id="saveSettingsButton">Save</button>
+    </div>
   </div>
   <div class="settings-container">
     <h1>Cloak settings</h1>
     <div class="input-group">
       <label for="title">Set Title</label>
       <input type="text" id="title" name="setTitle">
-      <button id="resetCloakSettingsButton" style="background-color: #f44336; margin-top: 10px;">Reset</button>
+    </div>
+    <div class="button-group">
+      <button id="resetCloakSettingsButton" class="reset">Reset</button>
       <button id="saveCloakSettingsButton">Save</button>
+    </div>
+  </div>
+  <div class="settings-container">
+    <h1>Toggle pop-up</h1>
+    <div class="toggle-container">
+      <label for="popupToggle">Toggle to remove pop-up</label>
+      <label class="toggle-switch">
+        <input type="checkbox" id="popupToggle">
+        <span class="slider"></span>
+      </label>
     </div>
   </div>
   <script>
     document.getElementById('saveSettingsButton').addEventListener('click', function () {
       const panicKey = document.getElementById('panicKey').value;
       const panicUrl = document.getElementById('panicUrl').value;
-
       localStorage.setItem('panicKey', panicKey);
       localStorage.setItem('panicUrl', panicUrl);
-
       alert('Settings saved!');
     });
 
-    document.getElementById("saveCloakSettingsButton").addEventListener("click", function () {
-      localStorage.setItem("cloakTitle", document.getElementById('title').value)
-      window.top.document.title = localStorage.getItem("cloakTitle")
+    document.getElementById('saveCloakSettingsButton').addEventListener('click', function () {
+      localStorage.setItem('cloakTitle', document.getElementById('title').value);
+      window.top.document.title = localStorage.getItem('cloakTitle');
     });
 
-    document.getElementById("resetCloakSettingsButton").addEventListener("click", function () {
-      localStorage.removeItem("cloakTitle");
-      window.top.document.title = "Galaxy";
-      document.getElementById("title").value = "";
+    document.getElementById('resetCloakSettingsButton').addEventListener('click', function () {
+      localStorage.removeItem('cloakTitle');
+      window.top.document.title = 'Settings'; // Set this to the original title of your site
+      document.getElementById('title').value = '';
+    });
+
+    document.getElementById('popupToggle').addEventListener('change', function () {
+      localStorage.setItem('popupEnabled', this.checked);
     });
 
     document.addEventListener('DOMContentLoaded', function () {
       const savedPanicKey = localStorage.getItem('panicKey');
       const savedPanicUrl = localStorage.getItem('panicUrl');
-      const savedCloakTitle = localStorage.getItem("cloakTitle");
+      const savedCloakTitle = localStorage.getItem('cloakTitle');
+      const popupEnabled = localStorage.getItem('popupEnabled') === 'true';
 
       if (savedPanicKey) {
         document.getElementById('panicKey').value = savedPanicKey;
@@ -135,9 +209,44 @@
         document.getElementById('panicUrl').value = savedPanicUrl;
       }
       if (savedCloakTitle) {
-        document.getElementById("title").value = savedCloakTitle;
+        document.getElementById('title').value = savedCloakTitle;
+      }
+      document.getElementById('popupToggle').checked = popupEnabled;
+
+      if (popupEnabled && window.self === window.top) {
+        const popup = open("about:blank", "_blank");
+        const doc = popup.document;
+        const iframe = doc.createElement("iframe");
+        const style = iframe.style;
+        const link = doc.createElement("link");
+        const name = "My Drive - Google Drive";
+        const icon = "https://ssl.gstatic.com/docs/doclist/images/drive_2022q3_32dp.png";
+        doc.title = name;
+        link.rel = "icon";
+        link.href = icon;
+        iframe.src = location.href;
+        style.position = "fixed";
+        style.top = style.bottom = style.left = style.right = 0;
+        style.border = style.outline = "none";
+        style.width = style.height = "100%";
+        doc.head.appendChild(link);
+        doc.body.appendChild(iframe);
+        location.replace(getRandomSite());
       }
     });
+
+    function getRandomSite() {
+      let sites = [
+        "https://google.com",
+        "https://classroom.google.com",
+        "https://docs.google.com",
+      ];
+      return sites[randRange(0, sites.length)];
+    }
+
+    function randRange(min, max) {
+      return Math.floor(Math.random() * (max - min) + min);
+    }
   </script>
 </body>
 </html>
