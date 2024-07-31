@@ -29,6 +29,43 @@
     <a href="/settings.html" class="button">Settings</a>
     <a href="/credits.html" class="button">Credits</a>
   </div>
+    .credits-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.5);
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    .credits-box {
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      border-radius: 10px;
+      padding: 20px;
+      width: 300px;
+      text-align: center;
+      color: #fff;
+    }
+
+    .credits-box h2 {
+      margin-bottom: 20px;
+      font-size: 24px;
+    }
+
+    .credits-box ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .credits-box ul li {
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
   <div class="credits-container">
       <div class="credits-box">
           <h2>Credits</h2>
