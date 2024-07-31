@@ -169,7 +169,7 @@
   <div class="settings-container">
     <h1>Toggle pop-up</h1>
     <div class="toggle-container">
-      <label for="popupToggle">Toggle to enable pop-up</label>
+      <label for="popupToggle">Toggle to remove pop-up</label>
       <label class="toggle-switch">
         <input type="checkbox" id="popupToggle">
         <span class="slider"></span>
@@ -195,9 +195,10 @@
     document.getElementById('resetCloakSettingsButton').addEventListener('click', function () {
       localStorage.removeItem('cloakTitle');
       localStorage.removeItem('cloakLogo');
-      window.top.document.title = 'Galaxy';
+      window.top.document.title = 'Settings'; // Set this to the original title of your site
+      document.querySelector("link[rel='icon']").href = './assets/favicon.png'; // Reset to default favicon
       document.getElementById('title').value = '';
-      document.querySelector("link[rel='icon']").href = './assets/favicon.png';
+      document.getElementById('logoUrl').value = '';
     });
 
     document.getElementById('popupToggle').addEventListener('change', function () {
@@ -219,11 +220,9 @@
       }
       if (savedCloakTitle) {
         document.getElementById('title').value = savedCloakTitle;
-        window.top.document.title = savedCloakTitle;
       }
       if (savedCloakLogo) {
         document.getElementById('logoUrl').value = savedCloakLogo;
-        document.querySelector("link[rel='icon']").href = savedCloakLogo;
       }
       document.getElementById('popupToggle').checked = popupEnabled;
 
