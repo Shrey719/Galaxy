@@ -39,12 +39,11 @@
       justify-content: center;
       align-items: center;
       height: 100vh;
-      background: rgba(0, 0, 0, 0.5);
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
-      z-index: 1000;
+      pointer-events: none;
     }
 
     .credits-box {
@@ -55,6 +54,7 @@
       width: 300px;
       text-align: center;
       color: #fff;
+      pointer-events: auto;
     }
 
     .credits-box h2 {
@@ -91,16 +91,6 @@
         <li>alexbell-lol (Cosmo) - Project Manager/Owner</li>
       </ul>
     </div>
-  </div>
-  </style>
-</head>
-<body>
-  <div class="navbar">
-    <a href="/index.html" class="button">Home</a>
-    <a href="/games.html" class="button">Games</a>
-    <a href="/apps.html" class="button">Apps</a>
-    <a href="/settings.html" class="button">Settings</a>
-    <a href="/credits.html" class="button">Credits</a>
   </div>
 </body>
 </html>
