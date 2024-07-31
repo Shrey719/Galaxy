@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.location.href = __uv$config.prefix + __uv$config.encodeUrl(query);
   }
 });
-
+ 
 function formatSearch(query) {
   try {
     return new URL(query).toString();
