@@ -21,7 +21,7 @@
       align-items: center;
       height: 100vh;
       margin: 0;
-      flex-direction: column; 
+      flex-direction: column; /* Align items vertically */
     }
     .settings-container {
       background-color: rgb(0, 0, 0);
@@ -30,7 +30,7 @@
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       max-width: 400px;
       width: 101%;
-      margin-bottom: 20px;
+      margin-bottom: 20px; /* Create space between boxes */
     }
     h1 {
       font-size: 24px;
@@ -96,6 +96,7 @@
     <div class="input-group">
       <label for="title">Set Title</label>
       <input type="text" id="title" name="setTitle">
+      <button id="resetCloakSettingsButton" style="background-color: #f44336; margin-top: 10px;">Reset</button>
       <button id="saveCloakSettingsButton">Save</button>
     </div>
   </div>
@@ -113,6 +114,12 @@
     document.getElementById("saveCloakSettingsButton").addEventListener("click", function () {
       localStorage.setItem("cloakTitle", document.getElementById('title').value)
       window.top.document.title = localStorage.getItem("cloakTitle")
+    });
+
+    document.getElementById("resetCloakSettingsButton").addEventListener("click", function () {
+      localStorage.removeItem("cloakTitle");
+      window.top.document.title = "Galaxy";
+      document.getElementById("title").value = "";
     });
 
     document.addEventListener('DOMContentLoaded', function () {
