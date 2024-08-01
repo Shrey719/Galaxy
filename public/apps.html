@@ -19,6 +19,7 @@
   <script src="./uv/uv.config.js"></script>
   <script src="./assets/register-sw.js"></script>
   <script src="./assets/script.js" defer></script>
+  <script src="/assets/settings.js"></script>
   <script src="./assets/onload.js"></script>
   <title>Apps</title>
   <style>
@@ -49,16 +50,6 @@
       text-decoration: none; transition: background-color 0.3s ease-in-out; }
     .use-button:hover { background-color: #454545; }
   </style>
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const savedCloakTitle = localStorage.getItem('cloakTitle');
-      if (savedCloakTitle) {
-        document.title = savedCloakTitle;
-      } else {
-        document.title = 'Apps';
-      }
-    });
-  </script>
 </head>
 <body>
   <div class="navbar">
@@ -72,8 +63,7 @@
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const appsData = [
-        { "link": "https://discord.com", "imgSrc": "./apps/discord.png", "title": "Discord" }
-        // add more apps here in the same format
+        { "link": "https://discord.com", "imgSrc": "/apps/discord.png", "title": "Discord" }
       ];
 
       const appsList = document.getElementById("appsList");
