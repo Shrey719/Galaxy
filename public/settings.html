@@ -157,10 +157,6 @@
       <label for="title">Set Title</label>
       <input type="text" id="title" name="setTitle">
     </div>
-    <div class="input-group">
-      <label for="logoUrl">Set Logo URL</label>
-      <input type="text" id="logoUrl" name="setLogoUrl">
-    </div>
     <div class="button-group">
       <button id="resetCloakSettingsButton" class="reset">Reset</button>
       <button id="saveCloakSettingsButton">Save</button>
@@ -169,7 +165,7 @@
   <div class="settings-container">
     <h1>Toggle pop-up</h1>
     <div class="toggle-container">
-      <label for="popupToggle">Toggle to enable pop-up</label>
+      <label for="popupToggle">Toggle to remove pop-up</label>
       <label class="toggle-switch">
         <input type="checkbox" id="popupToggle">
         <span class="slider"></span>
@@ -187,18 +183,13 @@
 
     document.getElementById('saveCloakSettingsButton').addEventListener('click', function () {
       localStorage.setItem('cloakTitle', document.getElementById('title').value);
-      localStorage.setItem('cloakLogo', document.getElementById('logoUrl').value);
-      window.top.document.title = localStorage.getItem('cloakTitle') || 'Settings';
-      document.querySelector("link[rel='icon']").href = localStorage.getItem('cloakLogo') || './assets/favicon.png';
+      window.top.document.title = localStorage.getItem('cloakTitle');
     });
 
     document.getElementById('resetCloakSettingsButton').addEventListener('click', function () {
       localStorage.removeItem('cloakTitle');
-      localStorage.removeItem('cloakLogo');
       window.top.document.title = 'Settings'; // Set this to the original title of your site
-      document.querySelector("link[rel='icon']").href = './assets/favicon.png';
       document.getElementById('title').value = '';
-      document.getElementById('logoUrl').value = '';
     });
 
     document.getElementById('popupToggle').addEventListener('change', function () {
@@ -209,7 +200,6 @@
       const savedPanicKey = localStorage.getItem('panicKey');
       const savedPanicUrl = localStorage.getItem('panicUrl');
       const savedCloakTitle = localStorage.getItem('cloakTitle');
-      const savedCloakLogo = localStorage.getItem('cloakLogo');
       const popupEnabled = localStorage.getItem('popupEnabled') === 'true';
 
       if (savedPanicKey) {
@@ -220,15 +210,6 @@
       }
       if (savedCloakTitle) {
         document.getElementById('title').value = savedCloakTitle;
-        window.top.document.title = savedCloakTitle;
-      } else {
-        window.top.document.title = 'Settings';
-      }
-      if (savedCloakLogo) {
-        document.getElementById('logoUrl').value = savedCloakLogo;
-        document.querySelector("link[rel='icon']").href = savedCloakLogo;
-      } else {
-        document.querySelector("link[rel='icon']").href = './assets/favicon.png';
       }
       document.getElementById('popupToggle').checked = popupEnabled;
 
