@@ -3,6 +3,16 @@
 <head>
   <link rel="shortcut icon" href="https://i.im.ge/2024/07/22/VWh1fL.USE-FOR-FONT-COLOR-4-MConverter-eu.jpeg/favicon.ico" type="image/x-icon">
   <link rel="icon" href="https://i.im.ge/2024/07/22/VWh1fL.USE-FOR-FONT-COLOR-4-MConverter-eu.jpeg" type="image/x-icon">
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-683NM3VWNY"></script>
+  <script src="./assets/script.js" defer></script>
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-683NM3VWNY');
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="shortcut icon" href="./assets/favicon.png" type="image/png">
@@ -10,7 +20,7 @@
   <script src="./uv/uv.bundle.js"></script>
   <script src="./uv/uv.config.js"></script>
   <script src="./assets/register-sw.js"></script>
-  <script src="./assets/script.js" defer></script>
+  <script src="./assets/panicKey.js" defer></script>
   <script src="./assets/onload.js" defer></script>
   <title>Games</title>
   <style>
@@ -38,6 +48,16 @@
       display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; background-color: white;
     }
   </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const savedCloakTitle = localStorage.getItem('cloakTitle');
+      if (savedCloakTitle) {
+        document.title = savedCloakTitle;
+      } else {
+        document.title = 'Games';
+      }
+    });
+  </script>
 </head>
 <body>
   <div class="navbar">
@@ -66,13 +86,13 @@
       gamesData.forEach(game => {
         const gameElement = document.createElement("div");
         gameElement.className = "game";
-        gameElement.innerHTML = `
+        gameElement.innerHTML = 
           <img src="${game.imgSrc}" alt="${game.title}" class="game-image">
           <div class="game-info">
             <h3 class="game-title">${game.title}</h3>
             <a href="${game.link}" class="play-button">Play</a>
           </div>
-        `;
+        ;
         gamesList.appendChild(gameElement);
       });
     });
