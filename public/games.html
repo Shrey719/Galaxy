@@ -48,16 +48,6 @@
       display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; background-color: white;
     }
   </style>
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const savedCloakTitle = localStorage.getItem('cloakTitle');
-      if (savedCloakTitle) {
-        document.title = savedCloakTitle;
-      } else {
-        document.title = 'Games';
-      }
-    });
-  </script>
 </head>
 <body>
   <div class="navbar">
@@ -86,13 +76,13 @@
       gamesData.forEach(game => {
         const gameElement = document.createElement("div");
         gameElement.className = "game";
-        gameElement.innerHTML = 
+        gameElement.innerHTML = `
           <img src="${game.imgSrc}" alt="${game.title}" class="game-image">
           <div class="game-info">
             <h3 class="game-title">${game.title}</h3>
             <a href="${game.link}" class="play-button">Play</a>
           </div>
-        ;
+        `;
         gamesList.appendChild(gameElement);
       });
     });
