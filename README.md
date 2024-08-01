@@ -6,3 +6,5 @@ Speaking of discord... Galaxy has a discord server!! You can join at https://dis
 
 # BYOD
 We do not have a dns server right now (im broke xd) 
+
+# Please star this project to show support for our proxy (it's new)
