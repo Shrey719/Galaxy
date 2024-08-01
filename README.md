@@ -8,3 +8,10 @@ Speaking of discord... Galaxy has a discord server!! You can join at https://dis
 We do not have a dns server right now (im broke xd) 
 
 # Please star this project to show support for our proxy (it's new)
+
+# Features
+About:Blank Cloaking
+Games (not alot right now but there will be more)
+Apps (not alot right now bit theres gonna be about 100)
+There Are Settings That have Panic Key, Cloak Settings, And you can Toggle Pop Up 
+We have Credits to credit everyone who helped make Galaxy.
