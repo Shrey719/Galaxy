@@ -159,7 +159,7 @@
     </div>
     <div class="input-group">
       <label for="logoUrl">Set Logo URL</label>
-      <input type="text" id="logoUrl" name="logoUrl" placeholder="Enter Logo URL">
+      <input type="text" id="logoUrl" name="setLogoUrl">
     </div>
     <div class="button-group">
       <button id="resetCloakSettingsButton" class="reset">Reset</button>
@@ -188,15 +188,15 @@
     document.getElementById('saveCloakSettingsButton').addEventListener('click', function () {
       localStorage.setItem('cloakTitle', document.getElementById('title').value);
       localStorage.setItem('cloakLogo', document.getElementById('logoUrl').value);
-      window.top.document.title = localStorage.getItem('cloakTitle');
-      document.querySelector("link[rel='icon']").href = localStorage.getItem('cloakLogo');
+      window.top.document.title = localStorage.getItem('cloakTitle') || 'Settings';
+      document.querySelector("link[rel='icon']").href = localStorage.getItem('cloakLogo') || './assets/favicon.png';
     });
 
     document.getElementById('resetCloakSettingsButton').addEventListener('click', function () {
       localStorage.removeItem('cloakTitle');
       localStorage.removeItem('cloakLogo');
       window.top.document.title = 'Settings'; // Set this to the original title of your site
-      document.querySelector("link[rel='icon']").href = './assets/favicon.png'; // Reset to default favicon
+      document.querySelector("link[rel='icon']").href = './assets/favicon.png';
       document.getElementById('title').value = '';
       document.getElementById('logoUrl').value = '';
     });
@@ -220,9 +220,15 @@
       }
       if (savedCloakTitle) {
         document.getElementById('title').value = savedCloakTitle;
+        window.top.document.title = savedCloakTitle;
+      } else {
+        window.top.document.title = 'Settings';
       }
       if (savedCloakLogo) {
         document.getElementById('logoUrl').value = savedCloakLogo;
+        document.querySelector("link[rel='icon']").href = savedCloakLogo;
+      } else {
+        document.querySelector("link[rel='icon']").href = './assets/favicon.png';
       }
       document.getElementById('popupToggle').checked = popupEnabled;
 
