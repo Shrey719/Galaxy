@@ -157,6 +157,10 @@
       <label for="title">Set Title</label>
       <input type="text" id="title" name="setTitle">
     </div>
+    <div class="input-group">
+      <label for="logoUrl">Set Logo URL</label>
+      <input type="text" id="logoUrl" name="setLogoUrl" placeholder="Enter Logo URL">
+    </div>
     <div class="button-group">
       <button id="resetCloakSettingsButton" class="reset">Reset</button>
       <button id="saveCloakSettingsButton">Save</button>
@@ -165,7 +169,7 @@
   <div class="settings-container">
     <h1>Toggle pop-up</h1>
     <div class="toggle-container">
-      <label for="popupToggle">Toggle to enable pop-up</label>
+      <label for="popupToggle">Toggle to remove pop-up</label>
       <label class="toggle-switch">
         <input type="checkbox" id="popupToggle">
         <span class="slider"></span>
@@ -183,13 +187,17 @@
 
     document.getElementById('saveCloakSettingsButton').addEventListener('click', function () {
       localStorage.setItem('cloakTitle', document.getElementById('title').value);
+      localStorage.setItem('logoUrl', document.getElementById('logoUrl').value);
       window.top.document.title = localStorage.getItem('cloakTitle');
+      document.querySelector('link[rel="shortcut icon"]').href = localStorage.getItem('logoUrl');
     });
 
     document.getElementById('resetCloakSettingsButton').addEventListener('click', function () {
       localStorage.removeItem('cloakTitle');
+      localStorage.removeItem('logoUrl');
       window.top.document.title = 'Settings'; // Set this to the original title of your site
       document.getElementById('title').value = '';
+      document.querySelector('link[rel="shortcut icon"]').href = './assets/favicon.png';
     });
 
     document.getElementById('popupToggle').addEventListener('change', function () {
@@ -200,6 +208,7 @@
       const savedPanicKey = localStorage.getItem('panicKey');
       const savedPanicUrl = localStorage.getItem('panicUrl');
       const savedCloakTitle = localStorage.getItem('cloakTitle');
+      const savedLogoUrl = localStorage.getItem('logoUrl');
       const popupEnabled = localStorage.getItem('popupEnabled') === 'true';
 
       if (savedPanicKey) {
@@ -210,6 +219,11 @@
       }
       if (savedCloakTitle) {
         document.getElementById('title').value = savedCloakTitle;
+        window.top.document.title = savedCloakTitle;
+      }
+      if (savedLogoUrl) {
+        document.getElementById('logoUrl').value = savedLogoUrl;
+        document.querySelector('link[rel="shortcut icon"]').href = savedLogoUrl;
       }
       document.getElementById('popupToggle').checked = popupEnabled;
 
